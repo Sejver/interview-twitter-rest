@@ -1,5 +1,6 @@
 package com.javalanguagezone.interviewtwitter.controller;
 
+import com.javalanguagezone.interviewtwitter.domain.Tweet;
 import com.javalanguagezone.interviewtwitter.domain.User;
 import com.javalanguagezone.interviewtwitter.service.TweetService;
 import com.javalanguagezone.interviewtwitter.service.UserService;
@@ -33,7 +34,7 @@ public class UserController {
    User user=userService.getUser(principal.getName());
    model.addAttribute("tweets",tweetService.tweetsFromUser(principal.getName()));
    model.addAttribute("user",user);
-
+   model.addAttribute("tweet",new Tweet());
    return "index";
   }
 
@@ -49,9 +50,10 @@ public class UserController {
     if (result.hasErrors()) {
       return VIEWS_USER_CREATE;
     } else {
-
+      if(!userService.alreadyExists(user)){
        user.setId(user.getId());
        this.userService.save(user);
+       }
        model.addAttribute("users",userService.getAllUsers());
        return "displayAllUsers";
     }
@@ -67,7 +69,7 @@ public class UserController {
 
   @GetMapping("/overview")
   public String following(Principal principal,Model model) {
-
+    model.addAttribute("tweet",new Tweet());
     model.addAttribute("user",userService.getUser(principal.getName()));
     model.addAttribute("following",userService.getUsersFollowing(principal).size());
     model.addAttribute("followers",userService.getUsersFollowers(principal).size());

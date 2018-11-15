@@ -30,14 +30,31 @@
     </div>
   </div>
 </div>
-<!--<div th:fragment="header-post">
-  <div class="container">
-    &lt;!&ndash;/*@thymesVar id="tweet" type="com.javalanguagezone.interviewtwitter.domain.Tweet"*/&ndash;&gt;
-    <form th:action="@{/tweets/}" th:object="${tweet}" method="post">
-      <input type="text" th:value="${content}" placeholder="What's happening? Tell us!">+
-      <input type="submit" value="Submit" />
+<div th:fragment="post1" style="margin: 60px">
+
+
+    <!--/*@thymesVar id="tweet" type="com.javalanguagezone.interviewtwitter.domain.Tweet"*/-->
+    <form th:action="@{/tweets/tweet}" th:object="${tweet}" method="post">
+      <div class="row">
+        <div class="col">
+      <input type="text" th:field="*{content}" class="form-control"  placeholder="What's happening? Tell us!">
+        </div>
+        <div class="col">
+          <input class="form-control" type="submit" value="Submit" />
+        </div>
+      </div>
     </form>
-  </div>
-</div>-->
+<script>
+  $(document).ready(function(){
+    var $form = $('form');
+    $form.submit(function(){
+      $.post($(this).attr('action'), $(this).serialize(), function(response){
+
+      },'json');
+      return false;
+    });
+  });
+</script>
+</div>
 </body>
 </html>

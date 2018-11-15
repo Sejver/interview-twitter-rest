@@ -13,6 +13,7 @@ import java.security.Principal;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
+import java.util.function.Predicate;
 
 import static java.util.stream.Collectors.toList;
 
@@ -59,5 +60,15 @@ public class UserService implements UserDetailsService {
 
   private List<UserDTO> convertUsersToDTOs(Set<User> users) {
     return users.stream().map(UserDTO::new).collect(toList());
+  }
+
+  @Transactional
+  public boolean alreadyExists(User user){
+
+    List<User>users=userRepository.findAll();
+    Predicate<User> userPredicate=e->e.getUsername().equals(user.getUsername());
+    return users.stream().anyMatch(userPredicate);
+
+
   }
 }

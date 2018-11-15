@@ -4,11 +4,13 @@
   ...
 </head>
 <body>
-<div th:fragment="form">
+<div th:fragment="post1">
   <div class="container">
-  <!--/*@thymesVar id="tweet" type="com.javalanguagezone.interviewtwitter.domain.Tweet"*/-->
+
+    <!--/*@thymesVar id="tweet" type="com.javalanguagezone.interviewtwitter.domain.Tweet"*/-->
   <form th:action="@{/tweets/}" th:object="${tweet}" method="post">
-  <input type="text" th:field="*{content}" placeholder="What's happening? Tell us!">
+    <input type="text" th:field="*{content}" placeholder="What's happening? Tell us!">
+    <input type="submit" value="Submit" />
   </form>
   </div>
 </div>
