@@ -1,0 +1,43 @@
+<!DOCTYPE html >
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  ...
+</head>
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top" th:fragment="header">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#"><strong>Twitter</strong></a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li th:classappend="${module == 'home' ? 'active' : ''}">
+          <a href="#" th:href="@{/}">My tweets</a>
+        </li>
+        <li th:classappend="${module == 'tasks' ? 'active' : ''}">
+          <a href="#" th:href="@{/new}">Create a User</a>
+        </li>
+        <li th:classappend="${module == 'tasks' ? 'active' : ''}">
+          <a href="#" th:href="@{/tweets}">Tweets</a>
+        </li>
+        <li th:classappend="${module == 'tasks' ? 'active' : ''}">
+          <a href="#" th:href="@{/all}">Display all Users</a>
+        </li>
+        <li th:classappend="${module == 'tasks' ? 'active' : ''}">
+          <a href="#" th:href="@{/overview}">Profile overview</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!--<div th:fragment="header-post">
+  <div class="container">
+    &lt;!&ndash;/*@thymesVar id="tweet" type="com.javalanguagezone.interviewtwitter.domain.Tweet"*/&ndash;&gt;
+    <form th:action="@{/tweets/}" th:object="${tweet}" method="post">
+      <input type="text" th:value="${content}" placeholder="What's happening? Tell us!">+
+      <input type="submit" value="Submit" />
+    </form>
+  </div>
+</div>-->
+</body>
+</html>

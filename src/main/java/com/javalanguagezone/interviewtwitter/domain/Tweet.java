@@ -32,3 +32,4 @@ public class Tweet {
     return author != null && content != null && !content.isEmpty() && content.length() <= TWEET_MAX_LENGTH;
   }
 }
+

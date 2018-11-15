@@ -17,7 +17,6 @@ import java.security.Principal;
 @Controller
 public class UserController {
 
-
   private static final String VIEWS_USER_CREATE = "createUser";
 
   private UserService userService;

@@ -30,11 +30,12 @@ public class InterviewTwitterApplication {
 
     @Override
     public void run(ApplicationArguments args){
-      User rogerVer = userRepository.save(new User("rogerkver", "password"));
-      User andreasAntonopoulos = userRepository.save(new User("aantonop", "a"));
-      User vitalikButerin = userRepository.save(new User("VitalikButerin", "password"));
-      User charlieLee = userRepository.save(new User("SatoshiLite", "password"));
-      User satoshiNakamoto = userRepository.save(new User("satoshiNakamoto", "password"));
+      User rogerVer = userRepository.save(new User("rogerkver","password","Roger", "Kver"));
+      User andreasAntonopoulos = userRepository.save(new User("aantonop","password","aantonop", "Antunovic"));
+      User vitalikButerin = userRepository.save(new User("VitalikButerin","password","Vitalik", "Buterin"));
+      User charlieLee = userRepository.save(new User("SatoshiLite","password","Satoshi", "Lite"));
+      User satoshiNakamoto = userRepository.save(new User("satoshiNakamoto","password","Satoshi", "Nakamoto"));
+      User merusicJasmin = userRepository.save(new User("MJ","mj","Merusic", "Jasmin"));
 
       vitalikButerin.addFollowing(satoshiNakamoto, rogerVer);
       userRepository.save(vitalikButerin);
@@ -48,6 +49,9 @@ public class InterviewTwitterApplication {
       charlieLee.addFollowing(satoshiNakamoto, rogerVer, vitalikButerin);
       userRepository.save(charlieLee);
 
+      merusicJasmin.addFollowing(satoshiNakamoto,charlieLee,rogerVer);
+      userRepository.save(merusicJasmin);
+
       tweetRepository.save(new Tweet("I created Bitcoin!", satoshiNakamoto));
       tweetRepository.save(new Tweet("I'm an alias", satoshiNakamoto));
       tweetRepository.save(new Tweet("Bitcoin cash is true Bitcoin!", rogerVer));
@@ -56,6 +60,7 @@ public class InterviewTwitterApplication {
       tweetRepository.save(new Tweet("Cryptocurrencies are all about disruption", andreasAntonopoulos));
       tweetRepository.save(new Tweet("Bitcoin mining is based on Proof of Work", andreasAntonopoulos));
       tweetRepository.save(new Tweet("If Bitcoin is  crypto gold then Litecoin is crypto silver.", charlieLee));
+      tweetRepository.save(new Tweet("Bitcoins are pretty valuable nowadays", merusicJasmin));
     }
   }
 }

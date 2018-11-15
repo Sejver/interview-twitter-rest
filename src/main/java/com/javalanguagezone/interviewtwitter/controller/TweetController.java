@@ -8,8 +8,10 @@ import com.javalanguagezone.interviewtwitter.service.dto.TweetDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Size;
 import java.security.Principal;
 import java.util.Collection;
@@ -28,10 +30,15 @@ public class TweetController {
     this.tweetService = tweetService;
   }
 
-  @PostMapping
+  @PostMapping("/")
   @ResponseStatus(CREATED)
-  public TweetDTO tweet(@RequestBody String tweet, Principal principal) {
-    return tweetService.createTweet(tweet, principal);
+  public String tweet(@ModelAttribute("tweet") @Valid @RequestBody String tweet, Principal principal, BindingResult result) {
+    if(result.hasErrors()){
+      return "index";
+    }
+       tweetService.createTweet(tweet, principal);
+
+    return "index";
   }
 
   @GetMapping

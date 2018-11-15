@@ -18,8 +18,8 @@ import static lombok.AccessLevel.PRIVATE;
 @Setter
 @NoArgsConstructor
 @ToString(exclude = {"following", "followers"})
-@EqualsAndHashCode(exclude = {"following", "followers"})
-public class User implements UserDetails {
+//@EqualsAndHashCode(exclude = {"following", "followers","person"})
+public class User extends Person implements UserDetails {
   public static final List<SimpleGrantedAuthority> AUTHORITIES = singletonList(new SimpleGrantedAuthority("USER"));
 
   @Id
@@ -40,9 +40,11 @@ public class User implements UserDetails {
   @JsonIgnore
   private String password;
 
-  public User(String username, String password) {
+  public User(String username, String password,String firstName, String lastName) {
+    super(firstName,lastName);
     this.username = username;
     this.password = password;
+
   }
 
   public void addFollowing(User... users){
