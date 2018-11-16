@@ -14,47 +14,38 @@
         <li th:classappend="${module == 'home' ? 'active' : ''}">
           <a href="#" th:href="@{/}">My tweets</a>
         </li>
-        <li th:classappend="${module == 'tasks' ? 'active' : ''}">
-          <a href="#" th:href="@{/new}">Create a User</a>
-        </li>
-        <li th:classappend="${module == 'tasks' ? 'active' : ''}">
+        <li th:classappend="${module == 'tweets' ? 'active' : ''}">
           <a href="#" th:href="@{/tweets}">Tweets</a>
         </li>
-        <li th:classappend="${module == 'tasks' ? 'active' : ''}">
-          <a href="#" th:href="@{/all}">Display all Users</a>
-        </li>
-        <li th:classappend="${module == 'tasks' ? 'active' : ''}">
+        <li th:classappend="${module == 'overview' ? 'active' : ''}">
           <a href="#" th:href="@{/overview}">Profile overview</a>
+        </li>
+        <li th:classappend="${module == 'new' ? 'active' : ''}">
+          <a href="#" th:href="@{/new}">Create a User</a>
+        </li>
+        <li th:classappend="${module == 'all' ? 'active' : ''}">
+          <a href="#" th:href="@{/all}">Display all Users</a>
         </li>
       </ul>
     </div>
   </div>
 </div>
 <div th:fragment="post1" style="margin: 60px">
-
-
     <!--/*@thymesVar id="tweet" type="com.javalanguagezone.interviewtwitter.domain.Tweet"*/-->
+  <div class="panel panel-default">
+    <div class="panel-body">
     <form th:action="@{/tweets/tweet}" th:object="${tweet}" method="post">
-      <div class="row">
-        <div class="col">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="col-md-8 form-group">
       <input type="text" th:field="*{content}" class="form-control"  placeholder="What's happening? Tell us!">
         </div>
-        <div class="col">
-          <input class="form-control" type="submit" value="Submit" />
+        <div class="col-md-4 form-group">
+          <input class="btn-group" type="submit" value="Submit" />
         </div>
       </div>
     </form>
-<script>
-  $(document).ready(function(){
-    var $form = $('form');
-    $form.submit(function(){
-      $.post($(this).attr('action'), $(this).serialize(), function(response){
-
-      },'json');
-      return false;
-    });
-  });
-</script>
+    </div>
+  </div>
 </div>
 </body>
 </html>
