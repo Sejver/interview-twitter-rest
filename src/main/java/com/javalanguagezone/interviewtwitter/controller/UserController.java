@@ -5,6 +5,7 @@ import com.javalanguagezone.interviewtwitter.domain.User;
 import com.javalanguagezone.interviewtwitter.service.TweetService;
 import com.javalanguagezone.interviewtwitter.service.UserService;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import javax.validation.Valid;
 import java.security.Principal;
 
+@Slf4j
 @Controller
 public class UserController {
 
@@ -53,7 +55,9 @@ public class UserController {
       if(!userService.alreadyExists(user)){
        user.setId(user.getId());
        this.userService.save(user);
-       }
+       }{
+        log.error("Already exists");
+      }
        model.addAttribute("users",userService.getAllUsers());
        return "displayAllUsers";
     }
