@@ -55,7 +55,7 @@ public class UserController {
       if(!userService.alreadyExists(user)){
        user.setId(user.getId());
        this.userService.save(user);
-       }{
+       }else{
         log.error("Already exists");
       }
        model.addAttribute("users",userService.getAllUsers());
